@@ -1,0 +1,13 @@
+<% layout("layouts/boilerplate") %>
+  <div class="container about-section py-5">
+    <div class=" text-white ">
+      <div class=" text-center p-5">
+        <h2 class="portfolio-color mb-4"><b>About Section</b></h2>
+        <% for (let list of listingsOfData) { %>
+          <p class="fs-5">
+            <%= list.about %>
+          </p>
+          <% } %>
+      </div>
+    </div>
+  </div>

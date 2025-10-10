@@ -1,0 +1,32 @@
+<% layout("layouts/boilerplate") %>
+    <h2 class="text-center index mb-4 portfolio-color mt-5 pt-5"><b>My Projects</b></h2>
+    <div class=" container project-section">
+
+        <div class="row">
+            <% for (let lists of projectData) { %>
+                <a href="/project/<%= lists._id%>" class="projects col-md-4 ">
+                    <div class=" col-md-4 mb-4 ">
+                        <div class="card h-100  text-bg-dark">
+                            <div class="card-body pro-card">
+                                <h5 class="card-title">
+                                    <%= lists.title %>
+                                </h5>
+                                <h6 class="card-subtitle mb-2 text-success ">Tech Stack - <%= lists.techStack %>
+                                </h6>
+                                <p class="card-text">
+                                    <%= lists.description %>
+                                </p>
+                                <a class=" card-link portfolio-color" href="<%= lists.link %>" class="card-link">Card link</a>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <% } %>
+                    <a href="/projects/new" class="btn btn-lg text-white create-new"
+                        style="background-color: #e83e8c; border-radius: 8px;">
+                        Create New
+                    </a>
+
+        </div>
+
+    </div>

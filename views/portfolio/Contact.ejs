@@ -1,0 +1,28 @@
+<% layout("layouts/boilerplate") %>
+  <div class="container contact-section min-vh-100 py-5 text-center">
+    <h2 class="portfolio-color index mb-5 mt-5 pt-5"><b>Contact</b></h2>
+    <div class="row g-4">
+      <% for (let lists of listingsOfData) { %>
+        <% for (let c of lists.contact) { %>
+          <div class="col-md-3">
+            <div class="card bg-dark text-white shadow-sm h-100">
+              <div class="card-body">
+                <h5 class="card-title text-capitalize">
+                  <%= c.type %>
+                </h5>
+                <% if (c.type==="email" || c.type==="phone" ) { %>
+                  <p class="card-text">
+                    <%= c.value %>
+                  </p>
+                  <% } else { %>
+                    <a href="<%= c.value %>" target="_blank" class="btn btn-outline-info btn-sm">
+                      Visit <%= c.type %>
+                    </a>
+                    <% } %>
+              </div>
+            </div>
+          </div>
+          <% } %>
+            <% } %>
+    </div>
+  </div>

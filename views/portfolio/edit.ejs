@@ -1,0 +1,76 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container p-4">
+  <div class="card bg-dark  shadow-lg p-4 rounded-3" style="max-width: 700px; margin: auto;">
+    
+    <!-- Heading -->
+    <h3 class="mb-4 text-center portfolio-color">Edit Project</h3>
+
+    <!-- Form -->
+    <form action="/project/<%= projectData._id %>?_method=PUT" method="POST" class="needs-validation" novalidate>
+      
+      <!-- Title -->
+      <div class="mb-3">
+        <label for="title" class="form-label fw-bold text-light" >Title</label>
+        <input 
+          type="text" 
+          id="title" 
+          name="listing[title]" 
+          placeholder="Add a title" 
+          class="form-control  bg-dark text-white"
+          value="<%= projectData.title %>" 
+          required
+        >
+        <div class="valid-feedback">Title looks good!</div>
+        <div class="invalid-feedback">Please enter the title</div>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <label for="description" class="form-label fw-bold text-light">Description</label>
+        <textarea 
+          id="description" 
+          name="listing[description]" 
+          class="form-control bg-dark text-white" 
+          required
+        ><%= projectData.description %></textarea>
+        <div class="invalid-feedback">Please enter a description</div>
+      </div>
+
+      <!-- Webpage -->
+      <div class="mb-3">
+        <label for="webpage" class="form-label fw-bold text-light">Webpage LINK</label>
+        <input 
+          type="text" 
+          id="webpage" 
+          name="listing[image]" 
+          placeholder="Enter Website URL / link"
+          class="form-control bg-dark text-white" 
+          value="<%= projectData.link %>" 
+          required
+        >
+        <div class="invalid-feedback">Please enter the project link</div>
+      </div>
+
+      <!-- Tech Stack -->
+      <div class="mb-3">
+        <label for="techStack" class="form-label fw-bold text-light">Tech Stack</label>
+        <input 
+          type="text" 
+          id="techStack" 
+          name="listing[techStack]" 
+          placeholder="HTML, CSS, JS" 
+          class="form-control bg-dark text-white" 
+          value="<%= projectData.techStack %>" 
+          required
+        >
+        <div class="invalid-feedback">Please enter the tech stack</div>
+      </div>
+
+      <!-- Submit -->
+      <div class="d-grid">
+        <button class="btn btn-dark" style="background-color: #ff4f81;">Update Project</button>
+      </div>
+    </form>
+  </div>
+</div>

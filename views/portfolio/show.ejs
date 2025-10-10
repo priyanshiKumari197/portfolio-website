@@ -1,0 +1,24 @@
+<% layout("layouts/boilerplate") %>
+  <div class="container min-vh-100 d-flex justify-content-center align-items-center ">
+    <div class="card text-bg-dark w-80" style="max-width: 500px; min-height: 500px;">
+      <div class="card-body d-flex flex-column justify-content-center">
+        <h3 class="card-title text-center mb-4 text-info"><b>Detail of the <%= projectData.title %></b></h3>
+        <h5 class="fw-bold text-white">
+          <%= projectData.title %>
+        </h5>
+        <p class="text-light">
+          <%= projectData.description %>
+        </p>
+        <p class="badge bg-success fs-6">
+          <%= projectData.techStack %>
+        </p>
+        <div class="d-flex gap-3 mt-4">
+          <a href="/project/<%= projectData._id %>/edit" class="btn btn-outline-info flex-fill">Edit</a>
+          <form action="/project/<%= projectData._id %>?_method=DELETE" method="POST" class="flex-fill">
+            <button class="btn btn-outline-danger w-100">Delete</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>

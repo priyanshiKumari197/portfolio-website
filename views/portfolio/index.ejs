@@ -1,0 +1,36 @@
+<% layout("layouts/boilerplate") %>
+  <div
+    class="container index min-vh-100 text-white d-flex flex-column justify-content-center align-items-center text-center">
+    <% for (let list of listingsOfData) { %>
+      <h2 class="fw-bold display-4 mb-1 portfolio-color">
+        I'm <br> <span class="text-white">
+          <%= list.name %>
+        </span>
+      </h2>
+      <p class="fs-4 text-white">
+        <span id="element"></span>
+      </p>
+      <p class="fs-5 text-white">
+        <%= list.role %> | Problem Solver
+      </p>
+      <% } %>
+
+        <div class="btns d-flex gap-3 mt-2">
+          <a href="/files/myResume.pdf" class="btn btn-lg " style="background-color:#e83e8c;" download>
+            Download Resume
+          </a>
+          <a href="https://github.com/priyanshiKumari197" class="btn btn-lg btn-outline-success" target="_blank">
+            Visit Github
+          </a>
+        </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    var typed = new Typed('#element', {
+      strings: ['MERN Stack Developer', 'Problem Solver'],
+      typeSpeed: 50,
+      backSpeed: 30,
+      loop: true
+    });
+  </script>

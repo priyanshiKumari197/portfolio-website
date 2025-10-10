@@ -1,0 +1,105 @@
+.navbar-dark .navbar-nav .nav-link {
+  color: #e83e8c !important; /* pink shade */
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #ffffff !important; /* hover pe white */
+}
+
+
+.fa-user {
+  color: #e83e8c !important;
+  font-size: 2rem;
+}
+
+.my-pic {
+  opacity: 0.3;
+  position: fixed;
+  top: 7rem;
+  right: 50px;
+  width: 27rem;
+}
+/* body, #main {
+  padding-top: 80px; 
+} */
+
+
+#main {
+  flex: 1;
+  background-color: black;
+  font-family: "Montserrat", sans-serif;
+  /* height: 120vh; */
+}
+
+.index {
+  /* border: 2px solid red; */
+  position: relative;
+  z-index: 2;
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+}
+
+.portfolio-color {
+  color: #e83e8c; /* premium pink */
+  /* soft glow effect */
+  letter-spacing: 1px; /* thoda spacing for clean look */
+  /* margin-top: 5rem; */
+}
+
+.card-link {
+  text-decoration: none;
+}
+.card-link:hover {
+  text-decoration: underline;
+}
+.create-new:hover {
+  background-color: #e83e8c !important; /* darker pink hover */
+  transform: scale(1.01);
+  transition: 0.2s ease-in-out;
+  opacity: 0.7;
+}
+
+.home-section,
+.about-section,
+.project-section,
+.skills-section {
+  min-height: 120vh;
+  display: flex;
+  margin-top: 4rem;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  color: white;
+  /* border: 2px solid red; */
+}
+
+.projects {
+  text-decoration: none;
+  color: white !important;
+}
+
+.card-subtitle {
+  color: rgb(255, 255, 255) !important;
+}
+
+.project-section {
+  padding-bottom: 2rem;
+}
+
+.pro-card:hover {
+  opacity: 0.7;
+}
+
+.show-route {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+footer {
+  padding: 1rem 0;
+  text-align: center;
+  height: 200px;
+}
