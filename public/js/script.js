@@ -1,18 +1,37 @@
-(() => {
-  'use strict'
+(function () {
+    emailjs.init("4UNzk3xTkVQQDhGww");
+})();
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation')
+const contactForm = document.getElementById('contact-form');
+const btn = contactForm.querySelector('button');
 
-  // Loop over them and prevent submission
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
+contactForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    if (!this.checkValidity()) {
+        event.stopPropagation();
+        this.classList.add('was-validated');
+        return;
+    }
 
-      form.classList.add('was-validated')
-    }, false)
-  })
-})()
+    btn.innerText = 'Sending...';
+
+    const serviceID = 'service_0tgz12f'; //
+    const templateID = 'template_2je81zz'; //
+
+    const templateParams = {
+        name: document.getElementById("from_name").value,
+        email: document.getElementById("reply_to").value,
+        message: document.getElementById("message").value
+    };
+
+    emailjs.send(serviceID, templateID, templateParams)
+        .then(() => {
+            btn.innerText = 'Send Message';
+            alert('Message Sent Successfully! ✅');
+            this.reset(); 
+            this.classList.remove('was-validated');
+        }, (err) => {
+            btn.innerText = 'Send Message';
+            alert('Failed to send: ' + JSON.stringify(err));
+        });
+});

@@ -1,28 +1,98 @@
 <% layout("layouts/boilerplate") %>
-  <div class="container contact-section min-vh-100 py-5 text-center">
-    <h2 class="portfolio-color index mb-5 mt-5 pt-5"><b>Contact</b></h2>
-    <div class="row g-4">
-      <% for (let lists of listingsOfData) { %>
-        <% for (let c of lists.contact) { %>
-          <div class="col-md-3">
-            <div class="card bg-dark text-white shadow-sm h-100">
-              <div class="card-body">
-                <h5 class="card-title text-capitalize">
-                  <%= c.type %>
-                </h5>
-                <% if (c.type==="email" || c.type==="phone" ) { %>
-                  <p class="card-text">
-                    <%= c.value %>
-                  </p>
-                  <% } else { %>
-                    <a href="<%= c.value %>" target="_blank" class="btn btn-outline-info btn-sm">
-                      Visit <%= c.type %>
-                    </a>
-                    <% } %>
-              </div>
-            </div>
-          </div>
-          <% } %>
+
+<div class="container hide-bg contact-section py-5 index">
+    <h2 class="portfolio-color text-center display-4 mb-5"><b>Get In Touch</b></h2>
+
+    <div class="row g-4 justify-content-center mb-5">
+        <% for (let lists of listingsOfData) { %>
+            <% for (let c of lists.contact) { %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card glass-card text-center h-100 p-3">
+                        <div class="card-body">
+                            <div class="contact-icon mb-3">
+                                <% if(c.type === "email") { %> <i class="fa-solid fa-envelope fs-2 pink-text"></i>
+                                <% } else if(c.type === "phone") { %> <i class="fa-solid fa-phone fs-2 pink-text"></i>
+                                <% } else if(c.type === "linkedin") { %> <i class="fa-brands fa-linkedin fs-2 pink-text"></i>
+                                <% } else { %> <i class="fa-solid fa-link fs-2 pink-text"></i> <% } %>
+                            </div>
+
+                            <h5 class="card-title text-capitalize fw-bold text-white"><%= c.type %></h5>
+
+                            <% if (c.type==="email" || c.type==="phone" ) { %>
+                                <p class="card-text text-secondary small text-break"><%= c.value %></p>
+                            <% } else { %>
+                                <a href="<%= c.value %>" target="_blank" class="btn btn-outline-pink btn-sm mt-2">Connect</a>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
             <% } %>
+        <% } %>
     </div>
-  </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="form-glass-container p-5">
+                <h3 class="text-white mb-4"><i class="fa-solid fa-paper-plane me-2 pink-text"></i>Send Me a Message</h3>
+                <form id="contact-form" class="needs-validation" novalidate>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="from_name" class="form-label text-secondary">Full Name</label>
+                            <input type="text" name="from_name" id="from_name" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="reply_to" class="form-label text-secondary">Email Address</label>
+                            <input type="email" name="reply_to" id="reply_to" class="form-control" placeholder="email@example.com" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="message" class="form-label text-secondary">Your Message</label>
+                        <textarea name="message" id="message" rows="4" class="form-control" placeholder="How can I help you?" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" id="submit-btn" class="btn btn-create-neon px-5 py-3">
+                            <span class="btn-text">Send Message</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+    (function() {
+        // Apni Public Key yahan daalein
+        emailjs.init("YOUR_PUBLIC_KEY"); 
+    })();
+
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const btn = document.getElementById('submit-btn');
+        const btnText = btn.querySelector('.btn-text');
+
+        // Validation check
+        if (!this.checkValidity()) {
+            event.stopPropagation();
+            this.classList.add('was-validated');
+            return;
+        }
+
+        btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>Sending...';
+        btn.disabled = true;
+
+        // EmailJS integration
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+            .then(function() {
+                alert('Success! Message sent to Priyanshi.');
+                document.getElementById('contact-form').reset();
+                btnText.innerText = 'Send Message';
+                btn.disabled = false;
+            }, function(error) {
+                alert('Failed to send... please try again later.');
+                btnText.innerText = 'Send Message';
+                btn.disabled = false;
+            });
+    });
+</script>

@@ -18,6 +18,7 @@
 </head>
 
 <body>
+  <body class="<%= typeof hidePhoto !== 'undefined' && hidePhoto ? 'hide-bg' : '' %>"></body>
 
   <!-- 🔹 Header -->
   <%- include("../includes/navbar.ejs") %>
@@ -36,5 +37,6 @@
       <script src="/js/script.js"></script>
 
 </body>
+
 
 </html>

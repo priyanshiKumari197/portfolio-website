@@ -1,76 +1,89 @@
 <% layout("layouts/boilerplate") %>
 
-<div class="container p-4">
-  <div class="card bg-dark  shadow-lg p-4 rounded-3" style="max-width: 700px; margin: auto;">
-    
-    <!-- Heading -->
-    <h3 class="mb-4 text-center portfolio-color">Edit Project</h3>
-
-    <!-- Form -->
-    <form action="/project/<%= projectData._id %>?_method=PUT" method="POST" class="needs-validation" novalidate>
+<div class="container hide-bg py-5 mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-7 col-md-9">
       
-      <!-- Title -->
-      <div class="mb-3">
-        <label for="title" class="form-label fw-bold text-light" >Title</label>
-        <input 
-          type="text" 
-          id="title" 
-          name="listing[title]" 
-          placeholder="Add a title" 
-          class="form-control  bg-dark text-white"
-          value="<%= projectData.title %>" 
-          required
-        >
-        <div class="valid-feedback">Title looks good!</div>
-        <div class="invalid-feedback">Please enter the title</div>
-      </div>
+      <div class="form-glass-container p-4 p-md-5 shadow-lg">
+        
+        <div class="text-center mb-5">
+          <h2 class="portfolio-color display-6 fw-bold mb-2">Edit Project</h2>
+          <p class="text-secondary small text-uppercase tracking-widest">Update your project milestones</p>
+          <div class="underline-pink mx-auto"></div>
+        </div>
 
-      <!-- Description -->
-      <div class="mb-3">
-        <label for="description" class="form-label fw-bold text-light">Description</label>
-        <textarea 
-          id="description" 
-          name="listing[description]" 
-          class="form-control bg-dark text-white" 
-          required
-        ><%= projectData.description %></textarea>
-        <div class="invalid-feedback">Please enter a description</div>
-      </div>
+        <form action="/project/<%= projectData._id %>?_method=PUT" method="POST" class="needs-validation" novalidate>
+          
+          <div class="mb-4">
+            <label for="title" class="form-label text-secondary fw-semibold">Project Title</label>
+            <div class="input-group">
+              <span class="input-group-text bg-transparent border-end-0 border-secondary"><i class="fa-solid fa-heading pink-text"></i></span>
+              <input 
+                type="text" 
+                id="title" 
+                name="listing[title]" 
+                class="form-control premium-input border-start-0"
+                value="<%= projectData.title %>" 
+                required
+              >
+            </div>
+            <div class="invalid-feedback text-danger small">Project ka title toh de do!</div>
+          </div>
 
-      <!-- Webpage -->
-      <div class="mb-3">
-        <label for="webpage" class="form-label fw-bold text-light">Webpage LINK</label>
-        <input 
-          type="text" 
-          id="webpage" 
-          name="listing[image]" 
-          placeholder="Enter Website URL / link"
-          class="form-control bg-dark text-white" 
-          value="<%= projectData.link %>" 
-          required
-        >
-        <div class="invalid-feedback">Please enter the project link</div>
-      </div>
+          <div class="mb-4">
+            <label for="techStack" class="form-label text-secondary fw-semibold">Tech Stack (comma separated)</label>
+            <div class="input-group">
+              <span class="input-group-text bg-transparent border-end-0 border-secondary"><i class="fa-solid fa-code pink-text"></i></span>
+              <input 
+                type="text" 
+                id="techStack" 
+                name="listing[techStack]" 
+                class="form-control premium-input border-start-0"
+                value="<%= projectData.techStack %>" 
+                placeholder="e.g. Next.js, TypeScript, Tailwind"
+                required
+              >
+            </div>
+          </div>
 
-      <!-- Tech Stack -->
-      <div class="mb-3">
-        <label for="techStack" class="form-label fw-bold text-light">Tech Stack</label>
-        <input 
-          type="text" 
-          id="techStack" 
-          name="listing[techStack]" 
-          placeholder="HTML, CSS, JS" 
-          class="form-control bg-dark text-white" 
-          value="<%= projectData.techStack %>" 
-          required
-        >
-        <div class="invalid-feedback">Please enter the tech stack</div>
-      </div>
+          <div class="mb-4">
+            <label for="webpage" class="form-label text-secondary fw-semibold">Live URL / Link</label>
+            <div class="input-group">
+              <span class="input-group-text bg-transparent border-end-0 border-secondary"><i class="fa-solid fa-link pink-text"></i></span>
+              <input 
+                type="text" 
+                id="webpage" 
+                name="listing[link]" 
+                class="form-control premium-input border-start-0"
+                value="<%= projectData.link %>" 
+                required
+              >
+            </div>
+          </div>
 
-      <!-- Submit -->
-      <div class="d-grid">
-        <button class="btn btn-dark" style="background-color: #ff4f81;">Update Project</button>
+          <div class="mb-4">
+            <label for="description" class="form-label text-secondary fw-semibold">Detailed Description</label>
+            <textarea 
+              id="description" 
+              name="listing[description]" 
+              rows="4"
+              class="form-control premium-input" 
+              required
+            ><%= projectData.description %></textarea>
+            <div class="invalid-feedback text-danger small">Thoda toh project ke baare mein batao...</div>
+          </div>
+
+          <div class="d-grid mt-5">
+            <button class="btn btn-create-neon py-3">
+              <i class="fa-solid fa-rotate me-2"></i> Update Project
+            </button>
+            <a href="/project/<%= projectData._id %>" class="btn btn-link text-secondary mt-3 text-decoration-none small">
+               Cancel & Go Back
+            </a>
+          </div>
+
+        </form>
       </div>
-    </form>
+    </div>
   </div>
 </div>

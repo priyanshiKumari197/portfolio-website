@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 // 1. Schema define
 const projectSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: String,
-  techStack: String, // changed from [String] to String
+  techStack: String, 
   link: String
 });
 
@@ -17,25 +17,13 @@ const sampleProjects = [
     title: "WonderLust",
     description: "A travel and stay booking platform inspired by Airbnb. Includes authentication, property listings, reviews, and MongoDB database integration.",
     techStack: "Node.js Express.js MongoDB EJS",
-    link: "https://github.com/priyanshiKumari197/wonderlust-app"
-  },
-  {
-    title: "Personal Portfolio",
-    description: "A responsive personal portfolio website to showcase my projects, skills, and resume with contact form integration.",
-    techStack: "React.js Tailwind CSS",
-    link: "https://yourportfolio.com"
+    link: "https://wonderlust-app-1.onrender.com/signup"
   },
   {
     title: "Real-Time Chat App",
     description: "A real-time chat application with private and group chat features using WebSockets, Socket.io, and MongoDB.",
     techStack: "Node.js Socket.io MongoDB",
     link: "https://github.com/username/chat-app"
-  },
-  {
-    title: "Anime Search App",
-    description: "A web application that allows users to search anime details using a public anime API with a clean UI.",
-    techStack: "HTML CSS JavaScript",
-    link: "https://priyanshikumari197.github.io/anime-search/"
   },
   {
     title: "Calculator App",
@@ -63,5 +51,4 @@ const sampleProjects = [
   }
 ];
 
-// 4. Export dono
-module.exports = { Project, sampleProjects };
+export { Project, sampleProjects };

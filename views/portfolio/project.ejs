@@ -1,32 +1,52 @@
 <% layout("layouts/boilerplate") %>
-    <h2 class="text-center index mb-4 portfolio-color mt-5 pt-5"><b>My Projects</b></h2>
-    <div class=" container project-section">
 
-        <div class="row">
-            <% for (let lists of projectData) { %>
-                <a href="/project/<%= lists._id%>" class="projects col-md-4 ">
-                    <div class=" col-md-4 mb-4 ">
-                        <div class="card h-100  text-bg-dark">
-                            <div class="card-body pro-card">
-                                <h5 class="card-title">
-                                    <%= lists.title %>
-                                </h5>
-                                <h6 class="card-subtitle mb-2 text-success ">Tech Stack - <%= lists.techStack %>
-                                </h6>
-                                <p class="card-text">
-                                    <%= lists.description %>
-                                </p>
-                                <a class=" card-link portfolio-color" href="<%= lists.link %>" class="card-link">Card link</a>
-                            </div>
+<div class="container hide-bg project-section py-5 index">
+    <div class="header-content text-center mb-5">
+        <h2 class="display-3 fw-bold portfolio-color glow-text">Creative Works</h2>
+        <p class="text-secondary opacity-75">A showcase of my journeys in MERN & Next.js</p>
+        <div class="underline-pink mx-auto mt-2"></div>
+    </div>
+
+    <div class="row g-4">
+        <% for (let project of projectData) { %>
+            <div class="col-lg-4 col-md-6">
+                <div class="card premium-project-card h-100">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <i class="fa-solid fa-folder-open pink-text fs-3"></i>
+                            <a href="<%= project.link %>" target="_blank" class="text-white opacity-50 hover-pink">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+
+                        <h4 class="card-title text-white fw-bold mb-2">
+                            <%= project.title %>
+                        </h4>
+                        
+                        <p class="card-text text-secondary small flex-grow-1 mb-4">
+                            <%= project.description %>
+                        </p>
+
+                        <div class="tech-stack-container mb-4">
+                            <% project.techStack.split(',').forEach(tech => { %>
+                                <span class="badge tech-tag"><%= tech.trim() %></span>
+                            <% }) %>
+                        </div>
+
+                        <div class="card-footer-action pt-3 border-top border-secondary border-opacity-25">
+                            <a href="/project/<%= project._id %>" class="btn btn-view-more w-100">
+                                View Case Study <i class="fa-solid fa-chevron-right ms-2"></i>
+                            </a>
                         </div>
                     </div>
-                </a>
-                <% } %>
-                    <a href="/projects/new" class="btn btn-lg text-white create-new"
-                        style="background-color: #e83e8c; border-radius: 8px;">
-                        Create New
-                    </a>
-
-        </div>
-
+                </div>
+            </div>
+        <% } %>
     </div>
+
+    <div class="text-center mt-5">
+        <a href="/projects/new" class="btn btn-create-neon">
+            <i class="fa-solid fa-plus me-2"></i>Add New Project
+        </a>
+    </div>
+</div>

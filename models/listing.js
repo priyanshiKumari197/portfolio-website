@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const portfolioSchema = new Schema({
@@ -14,7 +14,7 @@ const portfolioSchema = new Schema({
         type: String,
         required: true,
     },
-    skills: [String], // simple array of strings
+    skills: [String], 
 
     projects: [
         {
@@ -44,11 +44,12 @@ const portfolioSchema = new Schema({
 
     contact: [
         {
-            type: { type: String }, // email / phone / linkedin / github
+            type: { type: String }, 
             value: String,
         },
     ],
-})
+});
 
-const listing = mongoose.model("Portfolio",portfolioSchema)
-module.exports = listing;
+const Listing = mongoose.model("Portfolio", portfolioSchema);
+
+export default Listing;

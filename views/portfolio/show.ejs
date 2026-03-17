@@ -1,24 +1,63 @@
 <% layout("layouts/boilerplate") %>
-  <div class="container min-vh-100 d-flex justify-content-center align-items-center ">
-    <div class="card text-bg-dark w-80" style="max-width: 500px; min-height: 500px;">
-      <div class="card-body d-flex flex-column justify-content-center">
-        <h3 class="card-title text-center mb-4 text-info"><b>Detail of the <%= projectData.title %></b></h3>
-        <h5 class="fw-bold text-white">
-          <%= projectData.title %>
-        </h5>
-        <p class="text-light">
-          <%= projectData.description %>
-        </p>
-        <p class="badge bg-success fs-6">
-          <%= projectData.techStack %>
-        </p>
-        <div class="d-flex gap-3 mt-4">
-          <a href="/project/<%= projectData._id %>/edit" class="btn btn-outline-info flex-fill">Edit</a>
-          <form action="/project/<%= projectData._id %>?_method=DELETE" method="POST" class="flex-fill">
-            <button class="btn btn-outline-danger w-100">Delete</button>
-          </form>
-        </div>
 
-      </div>
+<div class="container hide-bg py-5 mt-5 index">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            
+            <div class="project-detail-head mb-4 d-flex justify-content-between align-items-end">
+                <div>
+                    <h6 class="pink-text text-uppercase tracking-widest mb-1">Project Case Study</h6>
+                    <h1 class="display-4 fw-bold text-white"><%= projectData.title %></h1>
+                </div>
+                <div class="project-actions d-flex gap-2">
+                    <a href="/project/<%= projectData._id %>/edit" class="btn btn-edit-icon" title="Edit">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <form action="/project/<%= projectData._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Pakka delete karna hai?')">
+                        <button class="btn btn-delete-icon" title="Delete">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="glass-show-card p-4 p-md-5">
+                <div class="row">
+                    <div class="col-md-8 border-end border-secondary border-opacity-25">
+                        <h5 class="text-info mb-3 fw-bold"><i class="fa-solid fa-circle-info me-2"></i>About the Project</h5>
+                        <p class="fs-5 text-light opacity-75 leading-relaxed mb-4">
+                            <%= projectData.description %>
+                        </p>
+                        
+                        <div class="live-demo-box mt-5">
+                             <a href="<%= projectData.link %>" target="_blank" class="btn btn-create-neon w-100">
+                                View Live Project <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i>
+                             </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 ps-md-4 mt-4 mt-md-0">
+                        <h5 class="text-info mb-3 fw-bold"><i class="fa-solid fa-gears me-2"></i>Tech Stack</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <% projectData.techStack.split(',').forEach(tech => { %>
+                                <span class="badge tech-tag-lg"><%= tech.trim() %></span>
+                            <% }) %>
+                        </div>
+
+                        <hr class="border-secondary opacity-25 my-4">
+
+                        <h5 class="text-info mb-3 fw-bold"><i class="fa-solid fa-calendar-check me-2"></i>Status</h5>
+                        <p class="text-success fw-bold"><i class="fa-solid fa-circle-check me-2"></i>Completed & Live</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <a href="/projects" class="text-secondary text-decoration-none hover-pink">
+                    <i class="fa-solid fa-arrow-left me-2"></i> Back to Projects
+                </a>
+            </div>
+
+        </div>
     </div>
-  </div>
+</div>

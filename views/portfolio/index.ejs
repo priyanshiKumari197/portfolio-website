@@ -1,36 +1,51 @@
 <% layout("layouts/boilerplate") %>
-  <div
-    class="container index min-vh-100 text-white d-flex flex-column justify-content-center align-items-center text-center">
+
+<div class="hero-glow-circle"></div>
+
+<div class="container index min-vh-100 d-flex flex-column justify-content-center align-items-center text-center">
     <% for (let list of listingsOfData) { %>
-      <h2 class="fw-bold display-4 mb-1 portfolio-color">
-        I'm <br> <span class="text-white">
-          <%= list.name %>
-        </span>
-      </h2>
-      <p class="fs-4 text-white">
-        <span id="element"></span>
-      </p>
-      <p class="fs-5 text-white">
-        <%= list.role %> | Problem Solver
-      </p>
-      <% } %>
+        <div class="hero-content-wrapper">
+            <h6 class="text-uppercase pink-text tracking-widest mb-3 animate-up">Welcome to my universe</h6>
+            <h2 class="fw-bold display-2 mb-1 portfolio-color main-title">
+                I'm <span class="text-white glow-name"><%= list.name %></span>
+            </h2>
+            
+            <div class="type-wrap fs-3 mb-4 text-light opacity-90">
+                <i class="fa-solid fa-terminal me-2 pink-text"></i>
+                <span id="element"></span>
+            </div>
 
-        <div class="btns d-flex gap-3 mt-2">
-          <a href="/files/myResume.pdf" class="btn btn-lg " style="background-color:#e83e8c;" download>
-            Download Resume
-          </a>
-          <a href="https://github.com/priyanshiKumari197" class="btn btn-lg btn-outline-success" target="_blank">
-            Visit Github
-          </a>
+            <p class="fs-5 text-secondary mb-5 max-w-600 mx-auto">
+                <span class="text-white fw-bold"><%= list.role %></span> | Crafting scalable web experiences with the MERN Stack.
+            </p>
         </div>
-  </div>
+    <% } %>
 
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <script>
+    <div class="btns-group d-flex gap-4 mt-2 animate-fade-in">
+        <a href="https://docs.google.com/document/d/1fqnhErY0WQ--nuOnZrT7kDQFeBXp6z-NwTj5Jwftwzg/edit?usp=sharing" 
+           class="btn-neon-main" target="_blank">
+            <i class="fa-solid fa-file-arrow-down me-2"></i> Download Resume
+        </a>
+        <a href="https://github.com/priyanshiKumari197" 
+           class="btn-outline-glow" target="_blank">
+            <i class="fa-brands fa-github me-2"></i> Visit Github
+        </a>
+    </div>
+
+    <div class="scroll-indicator mt-5 pt-5">
+        <div class="mouse"></div>
+        <p class="small text-secondary mt-2">Scroll Down</p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
     var typed = new Typed('#element', {
-      strings: ['MERN Stack Developer', 'Problem Solver'],
-      typeSpeed: 50,
-      backSpeed: 30,
-      loop: true
+        strings: ['MERN Stack Developer', 'Backend Enthusiast', 'UI/UX Designer', 'Software Engineer'],
+        typeSpeed: 60,
+        backSpeed: 40,
+        backDelay: 1500,
+        loop: true,
+        cursorChar: '_'
     });
-  </script>
+</script>

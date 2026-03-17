@@ -1,13 +1,43 @@
 <% layout("layouts/boilerplate") %>
-  <div class="container about-section py-5">
-    <div class=" text-white ">
-      <div class=" text-center p-5">
-        <h2 class="portfolio-color mb-4"><b>About Section</b></h2>
-        <% for (let list of listingsOfData) { %>
-          <p class="fs-5">
-            <%= list.about %>
-          </p>
-          <% } %>
+
+<div class="container hide-bg about-container index py-5">
+  
+  <div class="row mb-5 mt-5">
+    <div class="col-12 text-center">
+      <h2 class="display-3 fw-bold portfolio-color mb-4">About Me</h2>
+      <div class="glass-about-box p-5 mx-auto" style="max-width: 900px;">
+        <p class="fs-4 text-light opacity-90 leading-relaxed">
+          Hi, I am <span class="pink-text fw-bold">Priyanshi Kumari</span>, an aspiring full-stack developer passionate about turning ideas into interactive and scalable web applications. I enjoy working with modern technologies like JavaScript, React, Node.js, and MongoDB, and I love solving problems through clean code and thoughtful design.
+        </p>
       </div>
     </div>
   </div>
+
+  <div class="row g-4">
+    <div class="col-md-6">
+      <h3 class="text-white mb-4"><i class="fa-solid fa-briefcase pink-text me-2"></i>Experience</h3>
+      <div class="crazy-card p-4">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <h4 class="pink-text mb-0">Unwrite Studio</h4>
+            <p class="text-success small mb-2 font-monospace">Web Development Intern</p>
+          </div>
+          <span class="badge time-badge">Nov 2025 - Jan 2026</span>
+        </div>
+        <p class="text-secondary small">
+          Developed a high-performance website using <span class="text-white">Next.js</span>. Collaborated on real-world deployment focusing on UI/UX and API integration.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <h3 class="text-white mb-4"><i class="fa-solid fa-graduation-cap pink-text me-2"></i>Education</h3>
+      <div class="crazy-card p-4 h-100">
+        <h4 class="text-white mb-1">Bachelors of Technology</h4>
+        <p class="pink-text mb-2">Computer Science & Engineering</p>
+        <p class="mb-1 text-secondary"><i class="fa-solid fa-university me-2"></i>Sarala Birla University, Ranchi</p>
+        <p class="mb-0 text-secondary"><i class="fa-solid fa-calendar-day me-2"></i>2023 - 2027</p>
+      </div>
+    </div>
+  </div>
+</div>
