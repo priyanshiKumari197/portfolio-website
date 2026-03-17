@@ -28,9 +28,16 @@
                         </p>
 
                         <div class="tech-stack-container mb-4">
-                            <% project.techStack.split(',').forEach(tech => { %>
+                            <% 
+                                // Logic to handle both Array and String formats safely
+                                let techs = Array.isArray(project.techStack) 
+                                    ? project.techStack 
+                                    : (project.techStack || "").split(",").filter(t => t.trim() !== "");
+                                
+                                techs.forEach(tech => { 
+                            %>
                                 <span class="badge tech-tag"><%= tech.trim() %></span>
-                            <% }) %>
+                            <% }); %>
                         </div>
 
                         <div class="card-footer-action pt-3 border-top border-secondary border-opacity-25">

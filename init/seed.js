@@ -1,9 +1,12 @@
 import mongoose from "mongoose";
-import { data as initdata } from "./data.js"; 
+import dotenv from "dotenv";
+import portfolioData from "./data.js";
 import Listing from "../models/listing.js";
 import { Project, sampleProjects } from "../models/listingPro.js";
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/Portfolio";
+dotenv.config({ path: "../.env" });
+
+const MONGO_URL = process.env.MONGO_URI;
 
 async function runSeeder() {
   try {
@@ -11,8 +14,8 @@ async function runSeeder() {
     console.log("✅ Connected to MongoDB");
 
     await Listing.deleteMany({});
-    await Listing.insertMany(initdata);
-    console.log("🌱 Listings seeded!");
+    await Listing.insertMany([portfolioData]);
+    console.log("🌱 Portfolio data seeded!");
 
     await Project.deleteMany({});
     await Project.insertMany(sampleProjects);

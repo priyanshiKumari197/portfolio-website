@@ -1,32 +1,32 @@
 import express from "express";
 const app = express();
 import path from "path";
-import { fileURLToPath } from "url"; // __dirname fix ke liye
+import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import ejsMate from "ejs-mate";
 import methodOverride from "method-override";
-
 import Listing from "./models/listing.js";
 import { Project } from "./models/listingPro.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/Portfolio";
+const MONGO_URI = process.env.MONGO_URI;
 
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(MONGO_URI);
 }
 
 main()
   .then(() => {
-    console.log("✅ Connected to MongoDB");
+    console.log("Connected to MongoDB");
   })
   .catch((err) => {
-    console.log("❌ Connection error:", err);
+    console.log("Connection error:", err);
   });
 
-// App config
 app.set("view engine", "ejs");
 app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "views"));
@@ -34,9 +34,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
-// --- Routes ---
 
-// Home/Index
 app.get("/", async (req, res) => {
   const listingsOfData = await Listing.find({});
   res.render("portfolio/index.ejs", { listingsOfData });
@@ -48,18 +46,18 @@ app.get("/home", async (req, res) => {
 });
 
 app.get("/about", async (req, res) => {
-    const listingsOfData = await Listing.find({});
-    res.render("portfolio/about.ejs", { listingsOfData }); 
+  const listingsOfData = await Listing.find({});
+  res.render("portfolio/about.ejs", { listingsOfData });
 });
 
 app.get("/skills", async (req, res) => {
-    const listingsOfData = await Listing.find({}); 
-    res.render("portfolio/skill.ejs", { listingsOfData}); 
+  const listingsOfData = await Listing.find({});
+  res.render("portfolio/skill.ejs", { listingsOfData });
 });
 
 app.get("/Contact", async (req, res) => {
-  const listingsOfData = await Listing.find({}); 
-  res.render("portfolio/Contact.ejs", { listingsOfData }); 
+  const listingsOfData = await Listing.find({});
+  res.render("portfolio/Contact.ejs", { listingsOfData });
 });
 
 // --- Projects CRUD ---
@@ -103,6 +101,9 @@ app.delete("/project/:id", async (req, res) => {
   res.redirect("/projects");
 });
 
-app.listen(8080, () => {
-  console.log("🚀 Server is running on port 8080");
+// 🔥 PORT FIX (IMPORTANT)
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server is running on port ${PORT}`);
 });
