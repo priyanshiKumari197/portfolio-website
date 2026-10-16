@@ -50,14 +50,14 @@ const portfolioData = {
   contact: [
     { type: "email", value: "priyanshik674@gmail.com" },
     { type: "phone", value: "+91 6205627351" },
-    { type: "linkedin", value: "https://linkedin.com" },
-    { type: "github", value: "https://github.com" },
+    { type: "linkedin", value: "https://www.linkedin.com/in/priyanshi197/" },
+    { type: "github", value: "https://github.com/priyanshiKumari197" },
   ],
 
   codingProfiles: [
     {
       platform: "LeetCode",
-      link: "https://leetcode.com/",
+      link: "https://leetcode.com/u/priyanshi_12398/",
     },
   ],
 };
