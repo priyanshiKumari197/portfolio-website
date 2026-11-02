@@ -1,37 +1,59 @@
+
 (function () {
     emailjs.init("4UNzk3xTkVQQDhGww");
 })();
 
 const contactForm = document.getElementById('contact-form');
-const btn = contactForm.querySelector('button');
 
-contactForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    if (!this.checkValidity()) {
-        event.stopPropagation();
-        this.classList.add('was-validated');
-        return;
-    }
+if (contactForm) {
 
-    btn.innerText = 'Sending...';
+    const btn = contactForm.querySelector('button');
 
-    const serviceID = 'service_0tgz12f'; //
-    const templateID = 'template_2je81zz'; //
+    contactForm.addEventListener('submit', function (event) {
 
-    const templateParams = {
-        name: document.getElementById("from_name").value,
-        email: document.getElementById("reply_to").value,
-        message: document.getElementById("message").value
-    };
+        event.preventDefault();
 
-    emailjs.send(serviceID, templateID, templateParams)
+        if (!this.checkValidity()) {
+            event.stopPropagation();
+            this.classList.add('was-validated');
+            return;
+        }
+
+        btn.disabled = true;
+        btn.innerText = 'Sending...';
+
+        const templateParams = {
+            from_name: document.getElementById("from_name").value,
+            reply_to: document.getElementById("reply_to").value,
+            message: document.getElementById("message").value
+        };
+
+        emailjs.send(
+            'service_0tgz12f',
+            'template_2je81zz',
+            templateParams
+        )
         .then(() => {
+
+            alert('Message Sent Successfully! ❤️');
+
+            contactForm.reset();
+            contactForm.classList.remove('was-validated');
+
+        })
+        .catch((err) => {
+
+            console.error("EmailJS Error:", err);
+
+            alert('Failed to send: ' + (err.text || JSON.stringify(err)));
+
+        })
+        .finally(() => {
+
+            btn.disabled = false;
             btn.innerText = 'Send Message';
-            alert('Message Sent Successfully! ✅');
-            this.reset(); 
-            this.classList.remove('was-validated');
-        }, (err) => {
-            btn.innerText = 'Send Message';
-            alert('Failed to send: ' + JSON.stringify(err));
+
         });
-});
+
+    });
+}
